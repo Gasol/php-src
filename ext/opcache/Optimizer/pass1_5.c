@@ -248,7 +248,7 @@ if (ZEND_OPTIMIZER_PASS_1 & OPTIMIZATION_LEVEL) {
 				zval c;
 
 				if (!zend_get_persistent_constant(Z_STRVAL(ZEND_OP2_LITERAL(opline)), Z_STRLEN(ZEND_OP2_LITERAL(opline)), &c, 1 TSRMLS_CC)) {
-					if (!*constants || !zend_optimizer_get_collected_constant(*constants, &ZEND_OP2_LITERAL(opline), &c)) {
+					if (!*constants || !zend_optimizer_get_collected_constant(*constants, &ZEND_OP2_LITERAL(opline), &c)) { // FIXME
 						break;
 					}
 				}
@@ -334,6 +334,7 @@ if (ZEND_OPTIMIZER_PASS_1 & OPTIMIZATION_LEVEL) {
 			break;
 
 		case ZEND_DO_FCALL:
+            // FIXME
 			/* define("name", scalar); */
 			if (collect_constants &&
 			    opline->extended_value == 2 &&
